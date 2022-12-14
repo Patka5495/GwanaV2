@@ -5,15 +5,17 @@ window.addEventListener("keydown", function(e) {
         e.preventDefault();
     }
 }, false);
-// 사운드 모음
+
+// 새로고침 시 위치 초기화
 setTimeout(
     function(){
     var _scrollX = $('html').scrollLeft();
     $('html').scrollLeft(_scrollX + -10000);
     console.log(_scrollX);
-}
-    
+}    
 ,70)
+
+// 사운드 모음
 let pageMove = new Audio('./sound/page.mp3');
 let pageHome = new Audio('./sound/home.mp3');
 
@@ -38,27 +40,20 @@ let know = new Audio('./sound/그거 아세요.mp3');
 let ramen = new Audio('./sound/라면.mp3');
 let DGB = new Audio('./sound/돼고비.mp3');
 
-
-
-
-
-
-
-
-
-
-
 let pageNum = 0;
 // 현재 페이지를 나타내는 변수
 let pageLeft;
+
 // wrap의 css:left에 사용되는 변수
 let rightProg = 0;
 let leftProg = 0;
 let xProg = 0;
+
 // 왼쪽, 오른쪽 키를 눌렀을 때 점점 증가, 특정 수가 되면 함수 실행
 let LeftBool;
 let rightBool;
 let xBool;
+
 // 이동 관련 bool
 let menuNum=-1;
 let isMenuOn = false;
@@ -69,6 +64,7 @@ let isMenu4On = false;
 let isMenu5On = false;
 let isMenu6On = false;
 
+// ESC 함수
 let menuOff = function(){
     isMenuOn = false;
     isMenu1On = false;
@@ -85,52 +81,8 @@ let menuOff = function(){
     DGB.pause();
 }
 
-
-$('#leftEffectA').mouseenter(function(){
-    $(this).addClass('active');
-    $('#leftEffect').addClass('active');
-});
-$('#leftEffectA').mouseleave(function(){
-    $(this).removeClass('active');
-    $('#leftEffect').removeClass('active');                
-});
-$('#leftEffectA').click(function(){
-    prev();
-    $(this).removeClass('active');
-    $('#leftEffect').removeClass('active');                
-});
-$('#rightEffectA').mouseenter(function(){
-    $(this).addClass('active');
-    $('#rightEffect').addClass('active');
-});
-$('#rightEffectA').mouseleave(function(){
-    $(this).removeClass('active');
-    $('#rightEffect').removeClass('active');                
-});
-$('#rightEffectA').click(function(){
-
-    next();
-    $(this).removeClass('active');
-    $('#rightEffect').removeClass('active');                
-});
-$('#XEffectA').mouseenter(function(){
-    $(this).addClass('active');
-    $('#XEffect').addClass('active');
-});
-$('#XEffectA').mouseleave(function(){
-    $(this).removeClass('active');
-    $('#XEffect').removeClass('active');                
-});
-
-$('.menuJS').mouseenter(function(){
-    const index = $('.menuJS').index();
-    $('.menuJS').removeClass('active');    
-    $(this).addClass('active');   
-    menuNum = $(this).data("num");   
-    menuMoveSound.currentTime = 0;
-    menuMoveSound.play();
-});
-$('.menuJS').click(function(){  
+// Enter 함수
+let menuOn = function(){
     $('.artwork').eq(menuNum).addClass('active');
     isMenuOn = true;
     $('#prevBtn').addClass('none');
@@ -163,7 +115,54 @@ $('.menuJS').click(function(){
         mangtae.currentTime = 0;
         mangtae.play();
     }
+}
 
+// 리모콘 꾸미기 함수
+$('#leftEffectA').mouseenter(function(){
+    $(this).addClass('active');
+    $('#leftEffect').addClass('active');
+});
+$('#leftEffectA').mouseleave(function(){
+    $(this).removeClass('active');
+    $('#leftEffect').removeClass('active');                
+});
+$('#leftEffectA').click(function(){
+    prev();
+    $(this).removeClass('active');
+    $('#leftEffect').removeClass('active');                
+});
+$('#rightEffectA').mouseenter(function(){
+    $(this).addClass('active');
+    $('#rightEffect').addClass('active');
+});
+$('#rightEffectA').mouseleave(function(){
+    $(this).removeClass('active');
+    $('#rightEffect').removeClass('active');                
+});
+$('#rightEffectA').click(function(){
+    next();
+    $(this).removeClass('active');
+    $('#rightEffect').removeClass('active');                
+});
+$('#XEffectA').mouseenter(function(){
+    $(this).addClass('active');
+    $('#XEffect').addClass('active');
+});
+$('#XEffectA').mouseleave(function(){
+    $(this).removeClass('active');
+    $('#XEffect').removeClass('active');                
+});
+
+$('.menuJS').mouseenter(function(){
+    const index = $('.menuJS').index();
+    $('.menuJS').removeClass('active');    
+    $(this).addClass('active');   
+    menuNum = $(this).data("num");   
+    menuMoveSound.currentTime = 0;
+    menuMoveSound.play();
+});
+$('.menuJS').click(function(){  
+    menuOn();
 });
 $('#XBtn').click(function(){  
     xProg = 0;
@@ -222,9 +221,8 @@ $(document).keydown(function(event){
                 console.log(menuNum);
                 menuMoveSound.currentTime = 0;
                 menuMoveSound.play();
-
                 $('.menuJS').removeClass('active');
-                $('.menuJS').eq(menuNum).addClass('active');
+                $('.menuJS').eq(menuNum).addClass('active');                
             }
             else if (event.keyCode == 38 || event.which == 38 ) 
             // 위 방향키
@@ -241,41 +239,7 @@ $(document).keydown(function(event){
             else if(event.keyCode == 13 || event.which == 13)
             // 엔터키
             {
-                $('.artwork').eq(menuNum).addClass('active');
-                isMenuOn = true;
-                menuEnterSound.currentTime = 0;
-                menuEnterSound.play();             
-
-                $('#prevBtn').addClass('none');
-                $('#nextBtn').addClass('none');
-                $('#XBtn').removeClass('none');
-                
-                if(menuNum == 0){
-                    isMenu1On = true;
-                    ramen.currentTime = 0;
-                    ramen.play();
-                }else if(menuNum == 1){
-                    isMenu2On = true;
-                    DGB.currentTime = 0;
-                    DGB.play();
-                }else if(menuNum == 2){
-                    isMenu3On = true;
-                    know.currentTime = 0;
-                    know.play();
-                }else if(menuNum == 3){
-                    isMenu4On = true;
-                    bibim.currentTime = 0;
-                    bibim.play();
-                }else if(menuNum == 4){
-                    isMenu5On = true;
-                    devil.currentTime = 0;
-                    devil.play();
-                }else if(menuNum == 5){
-                    isMenu6On = true;
-                    mangtae.currentTime = 0;
-                    mangtae.play();
-                }
-                console.log(isMenu4On);
+                menuOn();
             }
         }else if(isMenuOn == true && pageNum == -1){
             if ( event.keyCode == 27 || event.which == 27 ) 
@@ -298,6 +262,8 @@ $(document).keydown(function(event){
                 }
             }
         }
+
+        // QWER 키
         if(isMenu4On == true){
             if ( event.keyCode == 81 || event.which == 81 ){
                 $('#bibimImg1').addClass('active');
@@ -338,9 +304,10 @@ $(document).keydown(function(event){
                 god.loop = false;
             }
         }
-        // 오른쪽도 마찬가지.
     }    
 });
+
+// 키 땠을 때
 $(document).keyup(function(event){
     if ( event.keyCode == 37 || event.which == 37 ) {
         $('#leftEffect').removeClass('active');
