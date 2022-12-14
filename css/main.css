@@ -1,0 +1,57 @@
+/*import css, font-family*/
+@import "reset.css";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+/*바디에 브라우저 스크롤 등 전체 세팅*/
+body{
+    scroll-behavior: smooth;
+    /* overflow-y: hidden; */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    font-family: 'NanumSquare';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 120%;  
+}
+body::-webkit-scrollbar{
+    /*display: none;  Chrome, Safari, Opera*/
+}
+/*모든 콘텐츠를 담을 wrap*/
+#wrap{
+    width: 300vw;
+}
+/*header*/
+header{
+    position: fixed;
+    left: 50%;
+}
+/*section 공통, 모든 섹션들이 풀페이지를 가지게 기본 세팅*/
+section{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+/*메뉴 섹션*/
+#menu{
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    display: flex;
+}
+/*작업물 공통 영역... 이 부분 손볼 예쩡*/
+.artwork{
+    position: absolute;
+    top: -100vh;
+    left: 100vw;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+} 
+/* footer */
+footer{
+    position: absolute;
+    top: 0;
+    left: 200vw;
+    width: 100vw;
+    height: 100vh;
+}

@@ -1,0 +1,424 @@
+/*import css, font-family*/
+@import "reset.css";
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+/*바디에 브라우저 스크롤 등 전체 세팅*/
+body{
+    background: #000;
+
+    scroll-behavior: smooth;
+    /* overflow-y: hidden; */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    font-family: 'NanumSquare';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 120%;  
+}
+body::-webkit-scrollbar{
+    display: none;  /*Chrome, Safari, Opera*/
+}
+/*모든 콘텐츠를 담을 wrap*/
+#wrap{
+    left: 0;
+    width: 300vw;
+    position: absolute;
+}
+/*header*/
+header{
+    z-index: 2;
+    position: fixed;
+    left: 50%;
+}
+/*logo*/
+header nav h1{
+    position: fixed;
+    top: 3.7vh;
+    transform: translate(-50%,0);
+    cursor: pointer;
+}
+header nav h1 img{
+    width: 65px;
+    filter: drop-shadow(0px 0px 1px #000);
+}
+/*remote controller*/
+#remote{
+    position: fixed;
+    display: flex;
+    background-color: #000;
+    bottom: 3.7vh;
+    transform: translate(-50%,0);
+    border: 2px solid #fff;
+    border-radius: 10px;
+}
+.remoteBtn{
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #fff;
+    border-radius: 20%;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    overflow: hidden;
+}
+.remoteBtn.none{
+    display: none;
+}
+.remoteBtn .AEffect{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all .7s ease;
+    cursor: pointer;
+}
+.AEffect.active{
+    color: #000;
+}
+.remoteBtn .remoteEffect{
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 80px;
+    left: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: -1;
+    transition: all .7s ease;
+}
+.remoteEffect.active{
+    top: 0px;
+}
+/* .remoteBtn::before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+} */
+/*section 공통, 모든 섹션들이 풀페이지를 가지게 기본 세팅*/
+section{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+/*메인 섹션*/
+#main h1{
+    position: relative;
+    width: 600px;
+    margin: 0 auto 40px auto ;
+    top: 25vh;
+}
+#main h1 img{
+    width: 100%;
+}
+#main h2{
+    position: relative;
+    top: 25vh;
+    text-align: center;
+    font-family: 'NanumSquare';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 120%;    
+}
+/*메뉴 섹션*/
+#menu{
+    position: absolute;
+    top: 0;
+    left: 100vw;
+    display: flex;
+    align-items: center;
+}
+#menu .list{
+    display: flex;
+    align-items: center;
+}
+#menu h3{
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 58px;
+    text-align: center;
+    color: #FFFFFF;
+}
+#menu #listBox{
+    width: 1520px;
+    margin: auto;
+    border: 1px solid #FFFFFF;
+}
+#menu #listBox .list:first-child li{
+    margin-right: 50px;
+}
+#menu #listBox .list:last-child li{
+    margin-left: 50px;
+}
+#menu #listBox .list:last-child{
+    float: right;
+    margin-top: 80px;
+}
+#menu #listBox .menuJS{
+    width: 320px;
+    height: 225px;
+    border: 3px solid #fff;
+    border-radius: 20px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .7s ease;
+}
+.menuJS.active{
+    border: 3px solid #000;
+    background-color: #FFF;
+    color: #000;
+}
+
+/*작업물 공통 영역... 이 부분 손볼 예쩡*/
+.artwork{
+    background-color: rgba(0, 0, 0, 1);
+    position: absolute;
+    top: -100vh;
+    left: 100vw;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    transition: all .7s ease;
+}
+.artwork.active{
+    top: 0vh;
+}
+/*테스트용*/
+/* #artwork1{
+    top: 100vh;
+} #artwork2{
+    top: 200vh;
+} #artwork3{
+    top: 300vh;
+} #artwork4{
+    top: 400vh;
+} #artwork5{
+    top: 500vh;
+} #artwork6{
+    top: 600vh;
+}  */
+.artwork .artworkBox{
+    width: 1520px;
+    height: 510px;
+    margin: auto;
+    border: 1px solid #FFF;
+    display: flex;
+    justify-content: space-between;
+}
+.artwork .artworkBox h3{
+    font-weight: 1000;
+    font-size: 54px;
+    line-height: 65px; 
+    padding: 13px;
+}
+.artwork .artworkBox h4{    
+    width: 740px;
+    height: 330px;
+    border: 1px solid #FFFFFF;  
+    padding: 25px;  
+    font-size: 21px;
+    font-weight: 300;
+}
+.artwork .artworkBox .artworkImg{
+    display: inline-block;
+    width: 740px;
+    height: 417px;
+    border: 1px solid #FFFFFF;
+    border-radius: 14px;
+    overflow: hidden;
+}
+.artwork .artworkBox .artworkImg img{
+    width: 100%;
+}
+.artwork .artworkBox .left{
+    width: 740px;
+}
+.artwork .artworkBox .right{
+    width: 740px;
+}
+#artwork1 .artworkBox #soyDiv{
+    display: flex;
+    margin-top: 20px;
+    width: 740px;
+    height: 150px;    
+    justify-content: space-between;
+}
+#artwork1 .artworkBox #soyDiv #soy{
+    width: 150px;
+    height: 100%;
+    margin: 0 50px;
+    border: 1px solid #FFFFFF;
+    border-radius: 14px;
+}
+#artwork1 .artworkBox #soyDiv #soyInfo{
+    display: flex;
+    width: 430px;
+    height: 100%;
+    border: 1px solid #FFFFFF;
+    margin: 0 30px;
+    align-items: center;
+    justify-content: center;
+}
+#artwork2 .artworkBox h4{
+    height: 404px;
+    margin-top: 30px;
+}
+#artwork2 .artworkBox .artworkImg{
+    margin-top: 0;
+    width: 740px;
+    height: 417px;
+    border: 1px solid #FFFFFF;
+    border-radius: 14px;
+}
+#artwork2 .artworkBox #DGBInfo{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#artwork2 .artworkBox #DGBInfo a{
+    font-size: 24px;
+}
+#artwork3 .artworkBox{
+    display: inline-block;
+    height: 700px;
+    text-align: center;
+}
+#artwork3 h3{
+    font-size: 36px;
+}
+#artwork3 .artworkImg{
+    width: 400px;
+    height: 400px;
+}
+#artwork3 h4{
+    width: 723px;
+    height: auto;
+    margin: 60px auto auto auto;
+}
+#artwork4 .artworkBox{
+    width: 95vw;
+    height: 95vh;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#artwork4 h4{
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+}
+#artwork4 #bibimImg1{
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+}
+#artwork4 #bibimImg2{
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
+}
+#artwork4 #bibimImg3{
+    position: absolute;
+    bottom: 5vh;
+    left: 5vw;
+}
+#artwork4 #bibimImg4{
+    position: absolute;
+    bottom: 5vh;
+    right: 5vw;
+}
+#artwork4 .artworkImg{
+    width: 100px;
+    height: 100px;
+}
+#artwork5 .artworkBox{
+    display: inline-block;
+    width: 95vw;
+    height: 95vh;
+    flex-direction: column;
+    text-align: center;
+}
+#artwork5 h4{
+    width: auto;
+    height: auto;
+}
+#artwork5 h3{
+    padding-top: 150px;
+}
+#artwork5 .hell{
+    width: 1520px;
+    display: flex;
+    margin: 150px auto 0 auto;
+    justify-content: space-between;
+}
+#artwork5 .artworkImg{
+    justify-content: none;
+    width: 200px;
+    height: 200px;
+    margin: 0;
+}
+#artwork6 .artworkBox{
+    position: relative;
+    width: 95vw;
+    height: 95vh;    
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url(../img/mangTae_bg.png);
+    background-repeat: no-repeat;
+    background-size: 1100px;
+    background-position: center ;
+}
+#artwork6 h4{
+    width: auto;
+    height: auto;
+    margin-top: 50px;
+}
+#artwork6 .artworkImg{
+    position: absolute;
+    top: 0;
+}
+/*footer*/
+footer{
+    position: absolute;
+    top: 0;
+    left: 200vw;
+    width: 100vw;
+    height: 100vh;
+}
+footer #footer{
+    width: 1520px;
+    margin: auto;
+    margin-top: 40vh;
+
+    text-align: right;  
+    border: 1px solid #FFFFFF;
+}
+footer #footer h3{
+    font-size: 200px;
+    font-weight: 700;
+    line-height: 100%;
+}
+footer #footer h4{
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 100%;
+}
+footer #footer ul li{
+    display: flex;
+    justify-content: right;
+    margin-top: 10px;
+}
+footer #footer ul li a{
+    font-size: 24px;
+}

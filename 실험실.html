@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GWANA</title>
+    <style>
+        #wrap{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        
+        }#wrap div{
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+            transition: all 1s ease;
+        }
+        #wrap div.good{
+            background-color: rgb(167, 0, 0);
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="box"></div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        let pageNum = 0;
+        let pageLeft;
+        let rightProg = 0;
+        $(document).keydown(function(event){
+            
+            // keydown 키 누르면
+            // keypress 값이 입력되면 (alt, ctrl, shift, esc 등 작동하지 않음)
+            // keyup 키 떼면
+            // key code list http://b1ix.net/170
+
+            if ( event.keyCode == 65 || event.which == 65 ) {
+                $('.box').addClass('good');
+            }
+        });
+        $(document).keyup(function(event){
+            if ( event.keyCode == 65 || event.which == 65 ) {
+                $('.box').removeClass('good');
+            }
+        });
+        function prev(){                
+            // console.log(pageNum);
+            if($("#wrap").is(":animated") == false && pageNum < 0){
+                pageNum ++;
+                pageLeft = pageNum * 100;
+                $("#wrap").animate(
+                    {                        
+                        "left": pageLeft +"vw"
+                    },
+                    1500
+                );                
+            }
+        }
+    </script>
+</body>
+</html>
