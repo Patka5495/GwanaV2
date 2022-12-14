@@ -13,14 +13,30 @@ setTimeout(
     console.log(_scrollX);
 }
     
-,50)
+,70)
+let pageMove = new Audio('./sound/page.mp3');
+let pageHome = new Audio('./sound/home.mp3');
 
 let menuMoveSound = new Audio('./sound/메뉴이동.wav');
 let menuEnterSound = new Audio('./sound/메뉴진입.wav');
 let menuExitSound = new Audio('./sound/메뉴아웃.wav');
+let bibim = new Audio('./sound/비빔밥.mp3');
+let bab = new Audio('./sound/밥밥밥.mp3');
+let gochu = new Audio('./sound/고추장.mp3');
+let gim = new Audio('./sound/김3.mp3');
+let cham = new Audio('./sound/참기름2.mp3');
 
+let devil = new Audio('./sound/devil.mp3');
+let die = new Audio('./sound/다이다이다이.mp3');
+let chick = new Audio('./sound/꼬끼오.mp3');
+let pig = new Audio('./sound/꾸울.mp3');
+let god = new Audio('./sound/갓.mp3');
 
+let mangtae = new Audio('./sound/망태 할아버지.mp3');
 
+let know = new Audio('./sound/그거 아세요.mp3');
+let ramen = new Audio('./sound/라면.mp3');
+let DGB = new Audio('./sound/돼고비.mp3');
 
 
 
@@ -46,6 +62,30 @@ let xBool;
 // 이동 관련 bool
 let menuNum=-1;
 let isMenuOn = false;
+let isMenu1On = false;
+let isMenu2On = false;
+let isMenu3On = false;
+let isMenu4On = false;
+let isMenu5On = false;
+let isMenu6On = false;
+
+let menuOff = function(){
+    isMenuOn = false;
+    isMenu1On = false;
+    isMenu2On = false;
+    isMenu3On = false;
+    isMenu4On = false;
+    isMenu5On = false;
+    isMenu6On = false;
+    bibim.pause();
+    devil.pause();
+    mangtae.pause();
+    know.pause();
+    ramen.pause();
+    DGB.pause();
+}
+
+
 $('#leftEffectA').mouseenter(function(){
     $(this).addClass('active');
     $('#leftEffect').addClass('active');
@@ -87,16 +127,42 @@ $('.menuJS').mouseenter(function(){
     $('.menuJS').removeClass('active');    
     $(this).addClass('active');   
     menuNum = $(this).data("num");   
+    menuMoveSound.currentTime = 0;
     menuMoveSound.play();
-
 });
 $('.menuJS').click(function(){  
     $('.artwork').eq(menuNum).addClass('active');
     isMenuOn = true;
     $('#prevBtn').addClass('none');
     $('#nextBtn').addClass('none');
-    $('#XBtn').removeClass('none');  
+    $('#XBtn').removeClass('none'); 
+    menuEnterSound.currentTime = 0;
     menuEnterSound.play();
+    if(menuNum == 0){
+        isMenu1On = true;
+        ramen.currentTime = 0;
+        ramen.play();
+    }else if(menuNum == 1){
+        isMenu2On = true;
+        DGB.currentTime = 0;
+        DGB.play();
+    }else if(menuNum == 2){
+        isMenu3On = true;
+        know.currentTime = 0;
+        know.play();
+    }else if(menuNum == 3){
+        isMenu4On = true;
+        bibim.currentTime = 0;
+        bibim.play();
+    }else if(menuNum == 4){
+        isMenu5On = true;
+        devil.currentTime = 0;
+        devil.play();
+    }else if(menuNum == 5){
+        isMenu6On = true;
+        mangtae.currentTime = 0;
+        mangtae.play();
+    }
 
 });
 $('#XBtn').click(function(){  
@@ -106,8 +172,9 @@ $('#XBtn').click(function(){
     $('#nextBtn').removeClass('none');
     $('#XBtn').addClass('none');    
     isMenuOn = false; 
+    menuExitSound.currentTime = 0;
     menuExitSound.play();
-
+    menuOff();
 });
 // 마우스 부분들도 만들어주었다. 근데 얘네 함수로 만들어주는게 나을래나...
 // 짧아서 굳이인가 싶기도 하고
@@ -121,7 +188,9 @@ $(document).keydown(function(event){
     if($("#wrap").is(":animated") == false )
     {
         if(isMenuOn == false){
-            if (event.keyCode == 37 || event.which == 37 ) {
+            if (event.keyCode == 37 || event.which == 37 )
+            // 왼쪽 방향키
+            {
                 $('#leftEffectA').addClass('active');
                 $('#leftEffect').addClass('active');
                 LeftBool = true;
@@ -130,7 +199,9 @@ $(document).keydown(function(event){
                     leftProg = 0;
                 }            
             }
-            else if ( event.keyCode == 39 || event.which == 39 ) {
+            else if ( event.keyCode == 39 || event.which == 39 ) 
+            // 오른쪽 방향키
+            {
                 $('#rightEffectA').addClass('active');
                 $('#rightEffect').addClass('active');
                 rightBool = true;
@@ -142,36 +213,74 @@ $(document).keydown(function(event){
             }
         }        
         if(isMenuOn == false && pageNum == -1){
-            if (event.keyCode == 40 || event.which == 40 ) {
+            if (event.keyCode == 40 || event.which == 40 ) 
+            // 아래 방향키
+            {
                 if(menuNum<5){
                     menuNum++;
                 }
                 console.log(menuNum);
+                menuMoveSound.currentTime = 0;
                 menuMoveSound.play();
 
                 $('.menuJS').removeClass('active');
                 $('.menuJS').eq(menuNum).addClass('active');
             }
-            else if (event.keyCode == 38 || event.which == 38 ) {
+            else if (event.keyCode == 38 || event.which == 38 ) 
+            // 위 방향키
+            {
                 if(menuNum>0){
                     menuNum--;
                 }
                 console.log(menuNum);
+                menuMoveSound.currentTime = 0;
                 menuMoveSound.play();
                 $('.menuJS').removeClass('active');
                 $('.menuJS').eq(menuNum).addClass('active');
             }
-            else if(event.keyCode == 13 || event.which == 13){
+            else if(event.keyCode == 13 || event.which == 13)
+            // 엔터키
+            {
                 $('.artwork').eq(menuNum).addClass('active');
                 isMenuOn = true;
-                menuEnterSound.play();
+                menuEnterSound.currentTime = 0;
+                menuEnterSound.play();             
 
                 $('#prevBtn').addClass('none');
                 $('#nextBtn').addClass('none');
-                $('#XBtn').removeClass('none');                
+                $('#XBtn').removeClass('none');
+                
+                if(menuNum == 0){
+                    isMenu1On = true;
+                    ramen.currentTime = 0;
+                    ramen.play();
+                }else if(menuNum == 1){
+                    isMenu2On = true;
+                    DGB.currentTime = 0;
+                    DGB.play();
+                }else if(menuNum == 2){
+                    isMenu3On = true;
+                    know.currentTime = 0;
+                    know.play();
+                }else if(menuNum == 3){
+                    isMenu4On = true;
+                    bibim.currentTime = 0;
+                    bibim.play();
+                }else if(menuNum == 4){
+                    isMenu5On = true;
+                    devil.currentTime = 0;
+                    devil.play();
+                }else if(menuNum == 5){
+                    isMenu6On = true;
+                    mangtae.currentTime = 0;
+                    mangtae.play();
+                }
+                console.log(isMenu4On);
             }
         }else if(isMenuOn == true && pageNum == -1){
-            if ( event.keyCode == 27 || event.which == 27 ) {
+            if ( event.keyCode == 27 || event.which == 27 ) 
+            // esc키
+            {
                 $('#XEffectA').addClass('active');
                 $('#XEffect').addClass('active');
                 xBool = true;
@@ -182,9 +291,51 @@ $(document).keydown(function(event){
                     $('#prevBtn').removeClass('none');
                     $('#nextBtn').removeClass('none');
                     $('#XBtn').addClass('none');    
-                    isMenuOn = false;
-                menuExitSound.play();
+                    menuOff();
+                    console.log(isMenu4On);
+                    menuExitSound.currentTime = 0;
+                    menuExitSound.play();
                 }
+            }
+        }
+        if(isMenu4On == true){
+            if ( event.keyCode == 81 || event.which == 81 ){
+                $('#bibimImg1').addClass('active');
+                bab.play();
+            }
+            if ( event.keyCode == 87 || event.which == 87 ){
+                $('#bibimImg2').addClass('active');
+                gim.play();
+            }
+            if ( event.keyCode == 69 || event.which == 69 ){
+                $('#bibimImg3').addClass('active');
+                gochu.play();
+            }
+            if ( event.keyCode == 82 || event.which == 82 ){
+                $('#bibimImg4').addClass('active');
+                cham.play();
+            }
+        }
+        if(isMenu5On == true){
+            if ( event.keyCode == 81 || event.which == 81 ){
+                $('#devilImg1').addClass('active');
+                die.play();
+                die.loop = false;
+            }
+            if ( event.keyCode == 87 || event.which == 87 ){
+                $('#devilImg2').addClass('active');
+                chick.play();
+                chick.loop = false;                
+            }
+            if ( event.keyCode == 69 || event.which == 69 ){
+                $('#devilImg3').addClass('active');
+                pig.play();
+                pig.loop = false;
+            }
+            if ( event.keyCode == 82 || event.which == 82 ){
+                $('#devilImg4').addClass('active');
+                god.play();
+                god.loop = false;
             }
         }
         // 오른쪽도 마찬가지.
@@ -206,6 +357,50 @@ $(document).keyup(function(event){
         $('#XEffect').removeClass('active');
         xProg = 0;
         xBool = false;
+    }
+    if(isMenu4On == true){
+        if ( event.keyCode == 81 || event.which == 81 ){
+            $('#bibimImg1').removeClass('active');
+            bab.pause();
+            bab.currentTime = 0;
+        }
+        if ( event.keyCode == 87 || event.which == 87 ){
+            $('#bibimImg2').removeClass('active');
+            gim.pause();
+            gim.currentTime = 0;
+        }
+        if ( event.keyCode == 69 || event.which == 69 ){
+            $('#bibimImg3').removeClass('active');
+            gochu.pause();
+            gochu.currentTime = 0;
+        }
+        if ( event.keyCode == 82 || event.which == 82 ){
+            $('#bibimImg4').removeClass('active');
+            cham.pause();
+            cham.currentTime = 0;
+        }
+    }
+    if(isMenu5On == true){
+        if ( event.keyCode == 81 || event.which == 81 ){
+            $('#devilImg1').removeClass('active');
+            die.pause();
+            die.currentTime = 0;            
+        }
+        if ( event.keyCode == 87 || event.which == 87 ){
+            $('#devilImg2').removeClass('active');
+            chick.pause();
+            chick.currentTime = 0;
+        }
+        if ( event.keyCode == 69 || event.which == 69 ){
+            $('#devilImg3').removeClass('active');
+            pig.pause();
+            pig.currentTime = 0;
+        }
+        if ( event.keyCode == 82 || event.which == 82 ){
+            $('#devilImg4').removeClass('active');
+            god.pause();
+            god.currentTime = 0;
+        }
     }
 });
 // 오르다가 키를 때면 초기화
@@ -257,12 +452,14 @@ function prev(){
         LeftBool = false;
         // 오 이거 넣으니까 한번 끊겼다가 잘 된다. 야호
         console.log("페이지 넘"+pageNum);
+        pageMove.currentTime = 0;
+        pageMove.play();
 
         $("#wrap").animate(
             {                        
                 "left": pageLeft +"vw"
             },
-            1500
+            1000
         );                
     }
 }
@@ -278,12 +475,13 @@ function next(){
         // left에 해당하는 변수를 곱해준다. 이거 그냥 위에서 한번만 선언해줘도 될래나.
         console.log("페이지 넘"+pageNum);
         console.log("메뉴 넘"+menuNum);
-
+        pageMove.currentTime = 0;
+        pageMove.play();
         $("#wrap").animate(
             {
                 "left": pageLeft +"vw"
             },
-            1500,
+            1000,
         );
     }
 }
@@ -298,5 +496,13 @@ function home(){
             },
             1500,
         );
+        pageHome.play();
+        $('.artwork').removeClass('active');
+        $('#prevBtn').removeClass('none');
+        $('#nextBtn').removeClass('none');
+        $('#XBtn').addClass('none');    
+        menuOff();
+        console.log(isMenu4On);
+        menuExitSound.play();
     }
 }

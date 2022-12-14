@@ -69,6 +69,8 @@ header nav h1 img{
 }
 .remoteBtn .AEffect{
     display: flex;
+    font-size: 24px;
+    font-weight: bold;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -149,7 +151,6 @@ section{
 #menu #listBox{
     width: 1520px;
     margin: auto;
-    border: 1px solid #FFFFFF;
 }
 #menu #listBox .list:first-child li{
     margin-right: 50px;
@@ -222,7 +223,6 @@ section{
     width: 1520px;
     height: 510px;
     margin: auto;
-    border: 1px solid #FFF;
     display: flex;
     justify-content: space-between;
 }
@@ -235,7 +235,6 @@ section{
 .artwork .artworkBox h4{    
     width: 740px;
     height: 330px;
-    border: 1px solid #FFFFFF;  
     padding: 25px;  
     font-size: 21px;
     line-height: 150%;
@@ -245,7 +244,6 @@ section{
     display: inline-block;
     width: 740px;
     height: 417px;
-    border: 1px solid #FFFFFF;
     border-radius: 14px;
     overflow: hidden;
 }
@@ -260,7 +258,6 @@ section{
 }
 #artwork1 .artworkBox #soyDiv{
     display: flex;
-    margin-top: 20px;
     width: 740px;
     height: 150px;    
     justify-content: space-between;
@@ -270,7 +267,6 @@ section{
     width: 150px;
     height: 100%;
     margin: 0 50px;
-    border: 1px solid #FFFFFF;
     border-radius: 14px;
 }
 #soy img{
@@ -287,7 +283,6 @@ section{
     height: 100%;
     padding: 15px;
     font-size: 18px;
-    border: 1px solid #FFFFFF;
     text-align: center;
     font-style: italic;
     margin: 0 30px;
@@ -302,7 +297,6 @@ section{
     margin-top: 0;
     width: 740px;
     height: 417px;
-    border: 1px solid #FFFFFF;
     border-radius: 14px;
 }
 #artwork2 .artworkBox #DGBInfo{
@@ -321,6 +315,10 @@ section{
 }
 #artwork3 h3{
     font-size: 36px;
+    padding: 0;
+}
+#artwork3 h4{
+    padding: 0;
 }
 #artwork3 .artworkImg{
     position: relative;
@@ -341,7 +339,7 @@ section{
     background-color: rgba(0, 0, 0, 0.432);
 }
 #artwork3 h4{
-    width: 723px;
+    width: 800px;
     height: auto;
     margin: 30px auto auto auto;
 }
@@ -356,26 +354,60 @@ section{
     width: auto;
     height: auto;
     margin-top: 50px;
+    text-align: center;
+}
+#artwork4 .artworkImg{
+    overflow: visible;
+}
+#artwork4 .artworkImg img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: saturate(0%);
+    transition: all .5s ease;
 }
 #artwork4 #bibimImg1{
     position: absolute;
-    top: 5vh;
-    left: 5vw;
+    top: 10vh;
+    left: 10vw;
 }
 #artwork4 #bibimImg2{
     position: absolute;
-    top: 5vh;
-    right: 5vw;
+    top: 10vh;
+    right: 10vw;
 }
 #artwork4 #bibimImg3{
     position: absolute;
-    bottom: 5vh;
-    left: 5vw;
+    bottom: 10vh;
+    left: 10vw;
 }
 #artwork4 #bibimImg4{
     position: absolute;
-    bottom: 5vh;
-    right: 5vw;
+    bottom: 10vh;
+    right: 10vw;
+}
+#artwork4 #bibimImg1 img{
+    width: calc(360px / 2);
+}#artwork4 #bibimImg2 img{
+    width: calc(215px / 2);
+}#artwork4 #bibimImg3 img{
+    width: calc(305px / 2);
+}#artwork4 #bibimImg4 img{
+    width: calc(339px / 2);
+}
+#artwork4 #bibimImg1.active img{
+    filter: saturate(100%);
+    width: calc(360px / 1.5);
+}#artwork4 #bibimImg2.active img{
+    filter: saturate(100%);
+    width: calc(215px / 1.5);
+}#artwork4 #bibimImg3.active img{
+    filter: saturate(100%);
+    width: calc(305px / 1.5);
+}#artwork4 #bibimImg4.active img{
+    filter: saturate(100%);
+    width: calc(339px / 1.5);
 }
 #artwork4 .artworkImg{
     width: 100px;
@@ -396,16 +428,32 @@ section{
     padding-top: 150px;
 }
 #artwork5 .hell{
-    width: 1520px;
+    width: 100%;
+    height: calc(95vh - 328px - 83px);
     display: flex;
-    margin: 150px auto 0 auto;
+    align-items: center;
+    padding: 0 100px;
     justify-content: space-between;
 }
 #artwork5 .artworkImg{
+    position: relative;
     justify-content: none;
-    width: 200px;
-    height: 200px;
-    margin: 0;
+    width: 350px;
+    height: 350px;
+    margin: 0;    
+}
+#artwork5 .artworkImg img{
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: saturate(0%);
+    transition: all .5s ease;
+}
+#artwork5 .artworkImg.active img{
+    width: 100%;
+    filter: saturate(100%);
 }
 #artwork6 .artworkBox{
     position: relative;
@@ -415,18 +463,39 @@ section{
     align-items: center;
     flex-direction: column;
     background-image: url(../img/mangTae_bg.png);
+    animation: mangTae_bg .7s ease alternate infinite;
     background-repeat: no-repeat;
-    background-size: 1100px;
+    background-size: 1300px;
     background-position: center ;
+}
+@keyframes mangTae_bg{
+    100%{
+        background-size: 900px;
+    }
+}
+#artwork6 h3{
+    background-color: #000;
+    padding: 0;
+    line-height: 100%;
+
 }
 #artwork6 h4{
     width: auto;
     height: auto;
     margin-top: 50px;
+    padding: 0px;
+    line-height: 100%;
+    background-color: #000;
+
 }
-#artwork6 .artworkImg{
+#artwork6 .artworkBox{
+    position: relative;
+}
+#artwork6 img{
     position: absolute;
-    top: 0;
+    bottom: 0;
+    width: 1440px;
+    z-index: 0;
 }
 /*footer*/
 footer{
@@ -442,7 +511,6 @@ footer #footer{
     margin-top: 40vh;
 
     text-align: right;  
-    border: 1px solid #FFFFFF;
 }
 footer #footer h3{
     font-size: 200px;
