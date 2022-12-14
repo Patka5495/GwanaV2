@@ -179,7 +179,7 @@ section{
 
 /*작업물 공통 영역... 이 부분 손볼 예쩡*/
 .artwork{
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(0, 0, 0, 0.9);
     position: absolute;
     top: -100vh;
     left: 100vw;
@@ -189,23 +189,35 @@ section{
     align-items: center;
     transition: all .7s ease;
 }
-.artwork.active{
-    top: 0vh;
-}
-/*테스트용*/
-/* #artwork1{
+/* 테스트용*/
+#artwork1{
+    top: -100vh;
+    left: 0;
+}#artwork2{
+    top: -150vh;
+    left: 100vw;
+
+}#artwork3{
+    top: -100vh;
+    left: 200vw;
+
+}#artwork4{
     top: 100vh;
-} #artwork2{
-    top: 200vh;
-} #artwork3{
-    top: 300vh;
-} #artwork4{
-    top: 400vh;
-} #artwork5{
-    top: 500vh;
-} #artwork6{
-    top: 600vh;
-}  */
+    left: 0;
+}#artwork5{
+    top: 150vh;
+    left: 100vw;
+
+}#artwork6{
+    top: 100vh;
+    left: 200vw;
+
+}
+#artwork1.active,#artwork2.active,#artwork3.active,#artwork4.active,#artwork5.active,#artwork6.active{
+    top: 0vh;
+    left: 100vw;
+}
+ 
 .artwork .artworkBox{
     width: 1520px;
     height: 510px;
@@ -226,6 +238,7 @@ section{
     border: 1px solid #FFFFFF;  
     padding: 25px;  
     font-size: 21px;
+    line-height: 150%;
     font-weight: 300;
 }
 .artwork .artworkBox .artworkImg{
@@ -253,24 +266,37 @@ section{
     justify-content: space-between;
 }
 #artwork1 .artworkBox #soyDiv #soy{
+    position: relative;
     width: 150px;
     height: 100%;
     margin: 0 50px;
     border: 1px solid #FFFFFF;
     border-radius: 14px;
 }
+#soy img{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all .5s ease;
+}
 #artwork1 .artworkBox #soyDiv #soyInfo{
     display: flex;
     width: 430px;
     height: 100%;
+    padding: 15px;
+    font-size: 18px;
     border: 1px solid #FFFFFF;
+    text-align: center;
+    font-style: italic;
     margin: 0 30px;
     align-items: center;
     justify-content: center;
 }
 #artwork2 .artworkBox h4{
     height: 404px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 #artwork2 .artworkBox .artworkImg{
     margin-top: 0;
@@ -297,13 +323,27 @@ section{
     font-size: 36px;
 }
 #artwork3 .artworkImg{
+    position: relative;
     width: 400px;
     height: 400px;
+}
+#artwork3 .artworkImg::before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url(../img/record.png);
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(0, 0, 0, 0.432);
 }
 #artwork3 h4{
     width: 723px;
     height: auto;
-    margin: 60px auto auto auto;
+    margin: 30px auto auto auto;
 }
 #artwork4 .artworkBox{
     width: 95vw;

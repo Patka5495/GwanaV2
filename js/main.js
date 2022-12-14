@@ -6,7 +6,18 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 // 사운드 모음
-let menuMoveSound = new Audio('../sound/1.mp3');
+setTimeout(
+    function(){
+    var _scrollX = $('html').scrollLeft();
+    $('html').scrollLeft(_scrollX + -10000);
+    console.log(_scrollX);
+}
+    
+,50)
+
+let menuMoveSound = new Audio('./sound/메뉴이동.wav');
+let menuEnterSound = new Audio('./sound/메뉴진입.wav');
+let menuExitSound = new Audio('./sound/메뉴아웃.wav');
 
 
 
@@ -57,6 +68,7 @@ $('#rightEffectA').mouseleave(function(){
     $('#rightEffect').removeClass('active');                
 });
 $('#rightEffectA').click(function(){
+
     next();
     $(this).removeClass('active');
     $('#rightEffect').removeClass('active');                
@@ -75,6 +87,8 @@ $('.menuJS').mouseenter(function(){
     $('.menuJS').removeClass('active');    
     $(this).addClass('active');   
     menuNum = $(this).data("num");   
+    menuMoveSound.play();
+
 });
 $('.menuJS').click(function(){  
     $('.artwork').eq(menuNum).addClass('active');
@@ -82,6 +96,8 @@ $('.menuJS').click(function(){
     $('#prevBtn').addClass('none');
     $('#nextBtn').addClass('none');
     $('#XBtn').removeClass('none');  
+    menuEnterSound.play();
+
 });
 $('#XBtn').click(function(){  
     xProg = 0;
@@ -90,6 +106,8 @@ $('#XBtn').click(function(){
     $('#nextBtn').removeClass('none');
     $('#XBtn').addClass('none');    
     isMenuOn = false; 
+    menuExitSound.play();
+
 });
 // 마우스 부분들도 만들어주었다. 근데 얘네 함수로 만들어주는게 나을래나...
 // 짧아서 굳이인가 싶기도 하고
@@ -146,6 +164,8 @@ $(document).keydown(function(event){
             else if(event.keyCode == 13 || event.which == 13){
                 $('.artwork').eq(menuNum).addClass('active');
                 isMenuOn = true;
+                menuEnterSound.play();
+
                 $('#prevBtn').addClass('none');
                 $('#nextBtn').addClass('none');
                 $('#XBtn').removeClass('none');                
@@ -163,6 +183,7 @@ $(document).keydown(function(event){
                     $('#nextBtn').removeClass('none');
                     $('#XBtn').addClass('none');    
                     isMenuOn = false;
+                menuExitSound.play();
                 }
             }
         }
